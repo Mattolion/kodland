@@ -1,0 +1,89 @@
+import discord
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'Zalogowaliśmy się jako {client.user}')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('!hello'):
+        await message.channel.send(f'Cześć, jestem bot {client.user}!')
+    elif  message.content.startswith('!heh'):
+        if len(message.content) > 4:
+            count_heh = int(message.content[4:])
+        else:
+            count_heh = 5
+        await message.channel.send("he" * count_heh)
+
+
+    #                   instrukcja działania 
+
+    if message.content.startswith('!kalkulator'):     
+        await message.channel.send(f' instrukcja do kalkulatora:    ')
+        await message.channel.send(f'...+... - jezeli chcesz dodac dwie liczby    ')
+        await message.channel.send(f'...-... - jezeli chcesz odjac od siebie liczby        ')
+        await message.channel.send(f'.../... - jezeli chcesz podzielic przez siebie liczby        ')
+        await message.channel.send(f'...*... - jezeli chcesz  pomnozyc dwie liczby        ')
+    
+    #                       kalkulator  
+# dodawanie 
+    if "+" in message.content:
+        left_number,right_number = message.content.split("+")
+
+        try:
+            left_number = int(left_number.strip())
+            right_number = int(right_number.strip())
+            result = left_number + right_number
+            await message.channel.send (f"wynik dodawania to: {result} ")
+        
+        except ValueError:
+            await message.channel.send("Upewnij sie ,że po obu stronach  + sa liczby ")
+# mnozenie 
+
+    if "*" in message.content:
+        lef_number,righ_number = message.content.split("*")
+
+        try:
+            lef_number = int(lef_number.strip())
+            righ_number = int(righ_number.strip())
+            resul = lef_number * righ_number
+            await message.channel.send (f"wynik mnozenia to: {resul} ")
+        
+        except ValueError:
+            await message.channel.send("Upewnij sie ,że po obu stronach  * sa liczby ")
+#dzielenie 
+
+    if "/" in message.content:
+        le_number,rig_number = message.content.split("/")
+
+        try:
+            le_number = int(le_number.strip())
+            rig_number = int(rig_number.strip())
+            resu = le_number / rig_number
+            await message.channel.send (f"wynik dzielenia  to: {resu} ")
+        
+        except ValueError:
+            await message.channel.send("Upewnij sie ,że po obu stronach / sa liczby ")
+
+#odejmowanie 
+             
+    if "-" in message.content:
+        l_number,ri_number = message.content.split("-")
+
+        try:
+            l_number = int(l_number.strip())
+            ri_number = int(ri_number.strip())
+            res = l_number - ri_number
+            await message.channel.send(f"wynik odejmowania  to: {res} ")
+        
+        except ValueError:
+            await message.channel.send("Upewnij sie ,że po obu stronach - sa liczby ")
+
+client.run("token")

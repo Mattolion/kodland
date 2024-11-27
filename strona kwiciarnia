@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Kwiaciarnia</title>
+    <title>Kwiaciarnia katowice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Madlen</h1>
+    <iframe src = "https://www.madlen.pl/"></iframe>
+    <p>Jest to kwiaciarnia z kwiatami</p>
+    <h2>Można tu kupic kwiaty za :</h2>
+             <ul>
+                   <li>20 zł duża róza</li>
+                   <li>10 zł mała róza</li>
+                   <li>40 zł bukiet tulipanów</li>
+                   <li>50 zł wieniec wigilinjny</li>
+             </ul>
+     <img src="kw.jpg" alt="Obraz 1">
+</body>
+</html>

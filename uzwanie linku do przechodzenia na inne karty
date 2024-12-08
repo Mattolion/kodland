@@ -1,0 +1,31 @@
+from flask import Flask
+import random
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return '''<h1>Dzien dobry wybierz link co chcesz zobaczyc </a>
+    </h2><a href="/ciekawostki">Losowa ciekawostka!</a> 
+    </h3><a href="/moneta">Rzut monetą!</a>'''
+
+
+@app.route("/kostka")
+def roll_dice():
+    kostka = random.randint(1,6)
+    return f'<h1>wypadło ci {kostka}</h1>'
+
+@app.route("/ciekawostki")
+def ciekawostki():
+    lista_ciekawostek = ['Według badania przeprowadzonego w 2018 roku ponad 50 osób w wieku od 18 do 34 lat uważa się za zależne od swoich smartfonów.',
+                        'Badanie zależności technologicznych jest jednym z najważniejszych obszarów współczesnych badań naukowych.',
+                        'Według badania z 2019 r. ponad 60 osób odpowiada na wiadomości służbowe na swoich smartfonach w ciągu 15 minut po wyjściu z pracy.',
+                        'Elon Musk opowiada się także za regulacją sieci społecznościowych i ochroną danych osobowych użytkowników. Twierdzi, że sieci społecznościowe gromadzą o nas ogromną ilość informacji, które następnie można wykorzystać do manipulowania naszymi myślami i zachowaniami.']
+    return f'<h1>ciekawostka dnia to:{random.choice(lista_ciekawostek)}</h1>'            
+
+@app.route("/moneta")
+def moneta():
+    monetaa = ['orzeł','reszka']
+    return f'<h1> wypadło z losowania:{random.choice(monetaa)} '
+
+
+app.run(debug=True)
